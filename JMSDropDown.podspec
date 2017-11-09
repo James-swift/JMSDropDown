@@ -11,7 +11,7 @@ Pod::Spec.new do |s|
   s.description   = <<-DESC
                    JMSDropDown - A custom dropdown written in Swift.
                    DESC
-  s.source_files  = "JMSDropDown/DropDown/*"
+  s.source_files  = "JMSDropDown/DropDown/*", "JMSDropDown/DropDown/helpers/*"
   s.platform      = :ios, '8.0'
   s.framework     = 'Foundation', 'UIKit'
 

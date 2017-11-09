@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="6vj-VF-JaB">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--DropDown-->
+        <scene sceneID="XzU-vm-ggE">
+            <objects>
+                <viewController id="0v1-k3-K39" customClass="ViewController" customModule="JMSDropDown" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Gb4-Nu-YHj"/>
+                        <viewControllerLayoutGuide type="bottom" id="Fqn-ZE-M5e"/>
+                    </layoutGuides>
+                    <scrollView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" id="lH9-eW-CtL">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="636"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1" horizontalCompressionResistancePriority="250" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F0B-sh-55C" customClass="NiceButton" customModule="JMSDropDown" customModuleProvider="target">
+                                <rect key="frame" x="20" y="30" width="420" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="3dq-es-BqE"/>
+                                </constraints>
+                                <state key="normal" title="默认Cell"/>
+                                <connections>
+                                    <action selector="chooseArticle:" destination="0v1-k3-K39" eventType="touchUpInside" id="yMI-d3-97H"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1" horizontalCompressionResistancePriority="250" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7KF-lo-KS7" customClass="NiceButton" customModule="JMSDropDown" customModuleProvider="target">
+                                <rect key="frame" x="450" y="30" width="72" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="54" id="6zC-a1-xQe"/>
+                                    <constraint firstAttribute="height" constant="40" id="BRj-DI-fnn"/>
+                                </constraints>
+                                <state key="normal" title="自定义Cell"/>
+                                <connections>
+                                    <action selector="changeAmount:" destination="0v1-k3-K39" eventType="touchUpInside" id="d0C-am-RjH"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstItem="F0B-sh-55C" firstAttribute="leading" secondItem="lH9-eW-CtL" secondAttribute="leadingMargin" id="7XM-oA-ZhU"/>
+                            <constraint firstItem="7KF-lo-KS7" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="lH9-eW-CtL" secondAttribute="trailingMargin" id="Igv-cT-HVL"/>
+                            <constraint firstItem="F0B-sh-55C" firstAttribute="width" secondItem="lH9-eW-CtL" secondAttribute="width" multiplier="0.7" id="ZmR-kz-XHa"/>
+                            <constraint firstItem="7KF-lo-KS7" firstAttribute="leading" secondItem="F0B-sh-55C" secondAttribute="trailing" constant="10" id="a6o-Ac-dQd"/>
+                            <constraint firstItem="F0B-sh-55C" firstAttribute="top" secondItem="Gb4-Nu-YHj" secondAttribute="bottom" constant="30" id="e3U-xq-mqr"/>
+                            <constraint firstItem="7KF-lo-KS7" firstAttribute="top" secondItem="Gb4-Nu-YHj" secondAttribute="bottom" constant="30" id="iGa-F5-Oit"/>
+                        </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="WDJ-03-hAi" appends="YES" id="keE-QV-oxh"/>
+                        </connections>
+                    </scrollView>
+                    <navigationItem key="navigationItem" title="DropDown" id="0mV-mU-nOt">
+                        <barButtonItem key="rightBarButtonItem" title="•••" id="UAB-ZP-MMT">
+                            <connections>
+                                <action selector="showBarButtonDropDown:" destination="0v1-k3-K39" id="LJc-Jl-e4e"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="600" height="700"/>
+                    <connections>
+                        <outlet property="amountButton" destination="7KF-lo-KS7" id="k1S-D7-alg"/>
+                        <outlet property="chooseArticleButton" destination="F0B-sh-55C" id="Kmi-a1-wRW"/>
+                        <outlet property="rightBarButton" destination="UAB-ZP-MMT" id="p43-xs-XEa"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aIH-z2-pSO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="WDJ-03-hAi"/>
+            </objects>
+            <point key="canvasLocation" x="1487" y="681"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="BXm-fh-f0T">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="6vj-VF-JaB" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="nbq-CX-E1j">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="0v1-k3-K39" kind="relationship" relationship="rootViewController" id="DQa-sw-UIS"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IYQ-tQ-ioz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="777" y="681"/>
+        </scene>
+    </scenes>
+</document>

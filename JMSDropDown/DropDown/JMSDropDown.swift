@@ -38,7 +38,7 @@ extension UIBarButtonItem: JMSAnchorView {
     
 }
 
-class JMSDropDown: UIView {
+public final class JMSDropDown: UIView {
 
     /// 下拉列表关闭模式
     public enum DismissMode {

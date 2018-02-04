@@ -14,6 +14,7 @@ public typealias SelectionClosure = (Index, String) -> Void
 public typealias ConfigurationClosure = (Index, String) -> String
 public typealias CellConfigurationClosure = (Index, String, JMSDropDownCell) -> Void
 private typealias ComputeLayoutTuple = (x: CGFloat, y: CGFloat, width: CGFloat, offscreenHeight: CGFloat)
+public typealias ContainerConstraint = (xConstraint: NSLayoutConstraint, yConstraint: NSLayoutConstraint, widthConstraint: NSLayoutConstraint, heightConstraint: NSLayoutConstraint)
 
 @objc
 public protocol JMSAnchorView: class {
@@ -105,6 +106,16 @@ public final class JMSDropDown: UIView {
     fileprivate var widthConstraint: NSLayoutConstraint!
     fileprivate var xConstraint: NSLayoutConstraint!
     fileprivate var yConstraint: NSLayoutConstraint!
+    
+    /**
+     更新tableViewContainer约束
+     */
+    public var blkUpdTabContainerConstraint: ((_ constraint: ContainerConstraint)->())?
+    
+    /**
+     更新下拉列表约束
+     */
+    public var blkUpdConstraint: ((_ dropDown: JMSDropDown)->())?
     
     // MARK: Appearance
     @objc public dynamic var cellHeight = Constants.UI.RowHeight {
@@ -452,6 +463,8 @@ extension JMSDropDown {
         widthConstraint.constant = layout.width
         heightConstraint.constant = layout.visibleHeight
         
+        self.blkUpdTabContainerConstraint?((xConstraint: xConstraint, yConstraint: yConstraint, widthConstraint: widthConstraint, heightConstraint: heightConstraint))
+
         tableView.isScrollEnabled = layout.offscreenHeight > 0
         
         DispatchQueue.main.async { [unowned self] in
@@ -721,7 +734,12 @@ extension JMSDropDown {
         visibleWindow?.bringSubview(toFront: self)
         
         self.translatesAutoresizingMaskIntoConstraints = false
-        visibleWindow?.addUniversalConstraints(format: "|[dropDown]|", views: ["dropDown": self])
+        
+        if self.blkUpdConstraint != nil {
+            self.blkUpdConstraint?(self)
+        }else {
+            visibleWindow?.addUniversalConstraints(format: "|[dropDown]|", views: ["dropDown": self])
+        }
         
         let layout = computeLayout()
         
